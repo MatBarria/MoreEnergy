@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
   for(int folder = 1; folder < 10; folder++) { // Loops in every directory
     for(int sim = 154; sim < 158; sim++) { // Loops in every simulation of the directory
       // Set the name of the file where is the data depends on the target and the folder
-      if(targetArr[0] == 'D' ){
+      if(targetArr[0] == 'D' ) {
         if(folder < 4) {
           inputName = Form("/eos/user/m/mbarrial/out/GetSimpleTuple_HSim/D2_pb%i/prunedD_%i.root", folder, sim);
         } else {
@@ -100,12 +100,8 @@ int main(int argc, char* argv[]) {
         simulTuple->GetEntry(i);
         vars[2] = Q2Evnt;
         vars[3] = NuEvnt;
-        if(mcPid == 211 ){
-          // Save the angle PhiPQ,Zh and Pt if it's a pion
-          vars[4] = ZhEvnt;
-          vars[5] = Pt2Evnt;
-          vars[6] = PhiEvnt;
-          vars[7] = ZhEvnt;
+        if(mcPid == 211 ) {
+          // Save the angle PhiPQ, Zh and Pt if it's a pion
           tmpZh[0]  = ZhEvnt;
           tmpPt2[0]  = Pt2Evnt;
           tmpPhi[0] = PhiEvnt;
@@ -128,27 +124,22 @@ int main(int argc, char* argv[]) {
           if(i + 1 + tmpCounter >= simulTuple->GetEntries() ){ break; }
           simulTuple->GetEntry(i + 1 + tmpCounter);
         }
-        if(vars[0] == 1) {
-          //tuple->GetEntry(i);
-          saveTuple->Fill(vars);
-        }else if(vars[0] > 0){
-          vars[4] = 0;
-          vars[7] = 0;
-          int pos = -1;
-          for(int k = 0; k <= vars[0]; k++) {
-            if(vars[4] < tmpZh[k]) {
-              vars[4] = tmpZh[k];
-              pos = k;
-            }
-            vars[7] += tmpZh[k];
+        vars[4] = 0;
+        vars[7] = 0;
+        int pos = -1;
+        for(int k = 0; k < vars[0]; k++) {
+          if(vars[4] < tmpZh[k]) {
+            vars[4] = tmpZh[k];
+            pos = k;
           }
-          // Save the Pt2 of the sum vector
-          vars[4] = tmpZh[pos];
-          vars[5] = tmpPt2[pos];
-          vars[6] = tmpPhi[pos];
-          pos = -1;
-          saveTuple->Fill(vars);
+          vars[7] += tmpZh[k];
         }
+        // Save the Pt2 of the sum vector
+        vars[4] = tmpZh[pos];
+        vars[5] = tmpPt2[pos];
+        vars[6] = tmpPhi[pos];
+        pos = -1;
+        saveTuple->Fill(vars);
         // Jump to the next event
         i += tmpCounter;
         tmpCounter = 0;
@@ -162,7 +153,7 @@ int main(int argc, char* argv[]) {
   } // End folder loop
 
   // Save the Ntuple
-  //TFile *fileOutput= new TFile(Form("/eos/user/m/mbarrial/Data/Acc/SimulTuple_%s.root", targetArr), "RECREATE");
+  //TFile *fileOutput= new TFile(Form("/eos/user/m/mbarrial/Data/MaxEnSimul_%s.root", targetArr), "RECREATE");
   TFile *fileOutput= new TFile("hola.root", "RECREATE");
   fileOutput->cd();
   saveTuple->Write();
