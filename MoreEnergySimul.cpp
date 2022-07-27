@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
   TNtuple* saveTuple = new TNtuple("ntuple_sim", "", VarList);
 
   for(int folder = 1; folder < 10; folder++) { // Loops in every directory
-    for(int sim = 154; sim < 158; sim++) { // Loops in every simulation of the directory
+    for(int sim = 1; sim < 500; sim++) { // Loops in every simulation of the directory
       // Set the name of the file where is the data depends on the target and the folder
       if(targetArr[0] == 'D' ) {
         if(folder < 4) {
@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
         }
       }
       //std::cout << "Checking directory " << folder << "  " << sim << std::endl;
-      inputName = Form("/home/matias/proyecto/Piones/Data/Simul/pruned%s_%i.root",targetArr ,sim);
+      //inputName = Form("/home/matias/proyecto/Piones/Data/Simul/pruned%s_%i.root",targetArr ,sim);
       // Open the file and check if it's exist
       TFile* fSource = new TFile(inputName,"READ");
       if (fSource->IsZombie()) {
@@ -153,8 +153,8 @@ int main(int argc, char* argv[]) {
   } // End folder loop
 
   // Save the Ntuple
-  //TFile *fileOutput= new TFile(Form("/eos/user/m/mbarrial/Data/MaxEnSimul_%s.root", targetArr), "RECREATE");
-  TFile *fileOutput= new TFile("hola.root", "RECREATE");
+  TFile *fileOutput= new TFile(Form("/eos/user/m/mbarrial/Data/MaxEnSimul_%s.root", targetArr), "RECREATE");
+  //TFile *fileOutput= new TFile("hola.root", "RECREATE");
   fileOutput->cd();
   saveTuple->Write();
   gROOT->cd();
