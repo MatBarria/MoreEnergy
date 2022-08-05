@@ -16,6 +16,7 @@ int EmptyHist(TH1F* h) {
   }
   if(empty == h->GetNbinsX()) { return 1; }
   else { return 0; }
+
 }
 
 //Integrate the PhiPQ histograms and generate a Pt2 histogram for each Q2, Nu, Zh bin
@@ -30,8 +31,9 @@ void PhiIntegration(TFile* inputFile, TFile* outputFile, char target[]) {
 	        TH1F* histPt2 = new TH1F(Form("corr_data_Pt2_%s_%i%i%i_%i", target, Q2Counter, NuCounter, ZhCounter, nPion), "", N_Pt2, Pt2_MIN, Pt2_MAX);
           for(int Pt2Counter = 0 ; Pt2Counter < N_Pt2 ; Pt2Counter++) { // Loops in every Pt2 bin
             // Take the his for this bins
+            //TH1F* histPhi = (TH1F*) inputFile->Get(Form("DataCorr2_%s_%i%i%i%i_%i", target, Q2Counter, NuCounter, ZhCounter, Pt2Counter, nPion));
+            TH1F* histPhi = (TH1F*) inputFile->Get(Form("DataCorr_%s_%i%i%i%i_%i", target, Q2Counter, NuCounter, ZhCounter, Pt2Counter, nPion));
             //TH1F* histPhi = (TH1F*) inputFile->Get(Form("Data_%s_%i%i%i%i_%i", target, Q2Counter, NuCounter, ZhCounter, Pt2Counter, nPion));
-            TH1F* histPhi = (TH1F*) inputFile->Get(Form("Data_%s_%i%i%i%i_%i", target, Q2Counter, NuCounter, ZhCounter, Pt2Counter, nPion));
             // If the histogram is null or empty skip this Pt2 bin
             if(histPhi == NULL){ continue; }
 	          if(EmptyHist(histPhi) == 1){ continue; }

@@ -3,26 +3,27 @@ cd ..
 mkdir -p bin
 
 g++ -Wall -fPIC -I./include `root-config --cflags` Integration.cpp -o ./bin/Integration  `root-config --glibs` ./include/Broad.h
-# g++ -Wall -fPIC -I./include `root-config --cflags` AccCorrection.cpp -o ./bin/AccCorrection  `root-config --glibs` ./include/Acc.h
+g++ -Wall -fPIC -I./include `root-config --cflags` AccCorrection.cpp -o ./bin/AccCorrection  `root-config --glibs` ./include/Acc.h
+g++ -Wall -fPIC -I./include `root-config --cflags` AccCorrection2.cpp -o ./bin/AccCorrection2  `root-config --glibs` ./include/Acc.h
 g++ -Wall -fPIC -I./include `root-config --cflags` DataPhi.cpp -o ./bin/DataPhi  `root-config --glibs` ./include/Acc.h
 g++ -Wall -fPIC -I./include `root-config --cflags` Broadening.cpp -o ./bin/Broadening  `root-config --glibs` ./include/Broad.h
 
 
 cd bin
 
-# ./AccCorrection DC
-# ./AccCorrection DFe
-# ./AccCorrection DPb
-# ./AccCorrection C
-# ./AccCorrection Pb
-# ./AccCorrection Fe
+./AccCorrection DC
+./AccCorrection DFe
+./AccCorrection DPb
+./AccCorrection C
+./AccCorrection Pb
+./AccCorrection Fe
 
-./DataPhi DC
-./DataPhi DFe
-./DataPhi DPb
-./DataPhi C
-./DataPhi Pb
-./DataPhi Fe
+# ./DataPhi DC
+# ./DataPhi DFe
+# ./DataPhi DPb
+# ./DataPhi C
+# ./DataPhi Pb
+# ./DataPhi Fe
 
 cd ..
 cd Data

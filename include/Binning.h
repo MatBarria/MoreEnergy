@@ -2,6 +2,7 @@
 const int N_Q2  = 3;
 const int N_Nu  = 3;
 const int N_Zh = 8;
+//const int N_Zh = 4;
 //const int N_Zh = 3;
  const int N_Pt2 = 90;
 //const int N_Pt2 = 70;
@@ -23,11 +24,11 @@ const float Pt2_MAX = 3.0;
 const int ZH_SUM = 2;
 
 // Binning
-//const float Q2_BINS[N_Q2+1] = {1, 1.3, 1.8, 4.0};
-const float Q2_BINS[N_Q2+1] = {1, 1.29, 1.68, 4.0};
+const float Q2_BINS[N_Q2+1] = {1, 1.3, 1.8, 4.0};
+//const float Q2_BINS[N_Q2+1] = {1, 1.29, 1.68, 4.0};
 
-//const float Nu_BINS[N_Nu+1] = {2.2, 3.2, 3.7, 4.26};
-const float Nu_BINS[N_Nu+1] = {2.2, 3.59, 3.96, 4.26};
+const float Nu_BINS[N_Nu+1] = {2.2, 3.2, 3.7, 4.26};
+//const float Nu_BINS[N_Nu+1] = {2.2, 3.59, 3.96, 4.26};
 
 //const float Zh_BINS[N_Zh+1] = {0, 0.2, 0.4, 0.6 ,1.0};
 const float Zh_BINS[N_Zh+1] = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 , 0.8 , 1.0};

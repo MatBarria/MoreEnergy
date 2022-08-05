@@ -66,6 +66,7 @@ int main(int argc, char* argv[]) {
   TCut Q2Cut, NuCut, ZhCut, Pt2Cut, VCData, cutsData;
   // Do not take in count events of 0 generated pion in the simultion beacause the is not hadrons variables to select a bin
   TCut YCCut = "TMath::Abs(YC)<1.4";
+  TCut XfCut = "Xf>0";
   // Select liquid or solid target
   if(targetArr[0] == 'D') { VCData  = "VC_TM == 1.";}
   else {VCData  = "VC_TM == 2.";}
@@ -91,7 +92,7 @@ int main(int argc, char* argv[]) {
           //ZhCut   = Form("Zh>%f&&Zh<%f", Zh_BINS[ZhCounter],   Zh_BINS[ZhCounter+1]);
           ZhCut   = Form("Zh>%f&&Zh<%f", Zh_BINS[ZhCounter],   Zh_BINS[ZhCounter+1]);
 
-          cutsData  = Q2Cut&&NuCut&&ZhCut&&YCCut&&VCData;
+          cutsData  = Q2Cut&&NuCut&&ZhCut&&YCCut&&VCData&&XfCut;
 
           TNtuple* ntupleData  = (TNtuple*) fileData->Get(Form("ntuple_%i_pion", gen));
 

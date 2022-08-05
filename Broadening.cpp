@@ -3,11 +3,12 @@
 // g++ -Wall -fPIC -I./include `root-config --cflags` Broadening.cpp -o ./bin/Broadening  `root-config --glibs` ./include/Broad.h
 
 #include "Broad.h"
+#include "rootlogon-impl.h"
 
 int main(){
 
   TStopwatch t;
-
+  applystyle();
   TString inputDirectory  = "/home/matias/proyecto/MoreEnergy/Data/";
   TString plotDirectory   = "/home/matias/proyecto/MoreEnergy/Plots/";
 
@@ -15,10 +16,12 @@ int main(){
   PtBroadeningFullIntegrated(inputDirectory, plotDirectory);
 
   PtbroadeningMultiZh(inputDirectory, plotDirectory);
+  PtbroadeningMultiZhSplit(inputDirectory, plotDirectory);
 
   PtBroadeningVarIntegrated(cQ2, inputDirectory, plotDirectory);
   PtBroadeningVarIntegrated(cNu, inputDirectory, plotDirectory);
   PtBroadeningVarIntegrated(cZh, inputDirectory, plotDirectory);
+  PtBroadeningVarIntegratedSplit(cZh, inputDirectory, plotDirectory);
   t.Print();
 
 }
