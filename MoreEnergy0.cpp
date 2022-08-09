@@ -40,13 +40,13 @@ int main(int argc, char* argv[]) {
   float *varsAccept         = new Float_t[8];
   float *varsThrown         = new Float_t[7];
   // Read the necesary variables
-  ntupleThrown->SetBranchAddress("Q2",&varsThrown[0]);
-  ntupleThrown->SetBranchAddress("Nu",&varsThrown[1]);
-  ntupleThrown->SetBranchAddress("Zh",&varsThrown[2]);
-  ntupleThrown->SetBranchAddress("Pt2",&varsThrown[3]);
-  ntupleThrown->SetBranchAddress("PhiPQ",&varsThrown[4]);
-  ntupleThrown->SetBranchAddress("Xf",&varsThrown[5]);
-  ntupleThrown->SetBranchAddress("deltaZ",&varsThrown[6]);
+  ntupleThrown->SetBranchAddress("Q2",     &varsThrown[0]);
+  ntupleThrown->SetBranchAddress("Nu",     &varsThrown[1]);
+  ntupleThrown->SetBranchAddress("Zh",     &varsThrown[2]);
+  ntupleThrown->SetBranchAddress("Pt2",    &varsThrown[3]);
+  ntupleThrown->SetBranchAddress("PhiPQ",  &varsThrown[4]);
+  ntupleThrown->SetBranchAddress("Xf",     &varsThrown[5]);
+  ntupleThrown->SetBranchAddress("deltaZ", &varsThrown[6]);
 
   gROOT->cd();
 

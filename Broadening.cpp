@@ -16,12 +16,12 @@ int main(){
   PtBroadeningFullIntegrated(inputDirectory, plotDirectory);
 
   PtbroadeningMultiZh(inputDirectory, plotDirectory);
-  PtbroadeningMultiZhSplit(inputDirectory, plotDirectory);
+  // PtbroadeningMultiZhSplit(inputDirectory, plotDirectory);
 
   PtBroadeningVarIntegrated(cQ2, inputDirectory, plotDirectory);
   PtBroadeningVarIntegrated(cNu, inputDirectory, plotDirectory);
   PtBroadeningVarIntegrated(cZh, inputDirectory, plotDirectory);
-  PtBroadeningVarIntegratedSplit(cZh, inputDirectory, plotDirectory);
+  //PtBroadeningVarIntegratedSplit(cZh, inputDirectory, plotDirectory);
   t.Print();
 
 }

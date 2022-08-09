@@ -1,6 +1,6 @@
 // This code apply the acceptance factors to the data and
 // generate a PhiPQ histogram for each bin of Q2, Nu, Zh, Pt2
-// For events with more than one pion uses the pmost energetic pion of the event 
+// For events with more than one pion uses the pmost energetic pion of the event
 // For data the tuple generate by the code VecSum.cpp
 // It can be compile with
 // g++ -Wall -fPIC -I./include `root-config --cflags` AccCorrection.cpp -o ./bin/AccCorrection  `root-config --glibs` ./include/Acc.h
@@ -104,7 +104,7 @@ int main(int argc, char* argv[]) {
           TNtuple* ntupleAccept = (TNtuple*) fileSimul->Get("ntuple_accept");
 
           // Apply the cuts to the ntuples to increces the efficiency
-          ntupleData->Draw(">>listData", cutsData);
+          ntupleData->Draw(">>listData",     cutsData);
           ntupleThrown->Draw(">>listThrown", cutsThrown);
           ntupleAccept->Draw(">>listAccept", cutsAccept);
           TEventList* evntData   = (TEventList*) gDirectory->Get("listData");

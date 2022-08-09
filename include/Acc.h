@@ -41,7 +41,7 @@ void AccCondition(TH1F* hist) {
 void AccHist1(TH1F* hist) {
 
   for(Int_t bin = 1; bin <= hist->GetNbinsX(); bin++) {
-    if(hist->GetBinContent(bin) > 1) {
+    if(hist->GetBinContent(bin) >= 1) {
       hist->SetBinContent(bin, 0);
       hist->SetBinError(bin, 0);
     }

@@ -38,22 +38,23 @@ int main(int argc, char* argv[]) {
   TNtuple* tuple = (TNtuple*)file->Get("ntuple_data");
 
   int tmpCounter = 0; // Counts how many particles there is in the event
-  float tmpEvnt, evnt, Q2Evnt, NuEvnt, ZhEvnt, Pt2Evnt, PhiEvnt, YCEvnt, VCEvnt, XfEvnt;
-  float tmpZh[5], tmpPt2[5], tmpPhi[5] , tmpXf[5];
+  float tmpEvnt, evnt, Q2Evnt, NuEvnt, ZhEvnt, Pt2Evnt, PhiEvnt, YCEvnt, VCEvnt, XfEvnt, deltaZEvnt;
+  float tmpZh[5], tmpPt2[5], tmpPhi[5] , tmpXf[5], tempDeltaZ[5];
 
-  const char* VarList = "Q2:Nu:Zh:Pt2:PhiPQ:YC:VC_TM:ZhSum:Xf";
+  const char* VarList = "Q2:Nu:Zh:Pt2:PhiPQ:YC:VC_TM:ZhSum:Xf:deltaZ";
   // Variables to fill the tuple
-  float *vars         = new Float_t[9];
+  float *vars         = new Float_t[10];
   // Read the necesary variables
-  tuple->SetBranchAddress("Q2",&Q2Evnt);
-  tuple->SetBranchAddress("Nu",&NuEvnt);
-  tuple->SetBranchAddress("Zh",&ZhEvnt);
-  tuple->SetBranchAddress("Pt2",&Pt2Evnt);
-  tuple->SetBranchAddress("PhiPQ",&PhiEvnt);
-  tuple->SetBranchAddress("YC",&YCEvnt);
-  tuple->SetBranchAddress("VC_TM",&VCEvnt);
-  tuple->SetBranchAddress("NEvnt",&evnt);
-  tuple->SetBranchAddress("Xf",&XfEvnt);
+  tuple->SetBranchAddress("Q2",     &Q2Evnt);
+  tuple->SetBranchAddress("Nu",     &NuEvnt);
+  tuple->SetBranchAddress("Zh",     &ZhEvnt);
+  tuple->SetBranchAddress("Pt2",    &Pt2Evnt);
+  tuple->SetBranchAddress("PhiPQ",  &PhiEvnt);
+  tuple->SetBranchAddress("YC",     &YCEvnt);
+  tuple->SetBranchAddress("VC_TM",  &VCEvnt);
+  tuple->SetBranchAddress("NEvnt",  &evnt);
+  tuple->SetBranchAddress("Xf",     &XfEvnt);
+  tuple->SetBranchAddress("deltaZ", &deltaZEvnt);
 
   gROOT->cd();
 
@@ -74,18 +75,20 @@ int main(int argc, char* argv[]) {
     vars[6] = VCEvnt;
     vars[7] = ZhEvnt;
     vars[8] = XfEvnt;
-    tmpZh[0]  = ZhEvnt;
-    tmpPt2[0] = Pt2Evnt;
-    tmpPhi[0] = PhiEvnt;
-    tmpXf[0]  = XfEvnt;
-    tmpEvnt   = evnt;
+    tmpZh[0]      = ZhEvnt;
+    tmpPt2[0]     = Pt2Evnt;
+    tmpPhi[0]     = PhiEvnt;
+    tmpXf[0]      = XfEvnt;
+    tempDeltaZ[0] = deltaZEvnt;
+    tmpEvnt = evnt;
     tuple->GetEntry(i + 1);
     while(tmpEvnt == evnt) { // Check all the paricles in the event
       tmpCounter++;
-      tmpZh[tmpCounter]  = ZhEvnt;
-      tmpPt2[tmpCounter] = Pt2Evnt;
-      tmpPhi[tmpCounter] = PhiEvnt;
-      tmpXf[tmpCounter] = XfEvnt;
+      tmpZh[tmpCounter]      = ZhEvnt;
+      tmpPt2[tmpCounter]     = Pt2Evnt;
+      tmpPhi[tmpCounter]     = PhiEvnt;
+      tmpXf[tmpCounter]      = XfEvnt;
+      tempDeltaZ[tmpCounter] = deltaZEvnt;
       if(i + 1 + tmpCounter >= tuple->GetEntries() ){ break; }
       tuple->GetEntry(i + 1 + tmpCounter);
     }
@@ -108,6 +111,7 @@ int main(int argc, char* argv[]) {
       vars[3] = tmpPt2[pos];
       vars[4] = tmpPhi[pos];
       vars[8] = tmpXf[pos];
+      vars[9] = tempDeltaZ[pos];
       pos = -1;
       ntuplePion[tmpCounter]->Fill(vars);
     }

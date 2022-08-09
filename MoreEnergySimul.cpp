@@ -85,14 +85,14 @@ int main(int argc, char* argv[]) {
       vars[0] = 0; // Count how many pions were generated in the event
       vars[1] = 0; // Count how many pions were detected in the event
       // Read the necesary variables
-      simulTuple->SetBranchAddress("mc_pid",&mcPid);
-      simulTuple->SetBranchAddress("pid",&pid);
-      simulTuple->SetBranchAddress("mc_Q2",&Q2Evnt);
-      simulTuple->SetBranchAddress("mc_Nu",&NuEvnt);
-      simulTuple->SetBranchAddress("mc_Zh",&ZhEvnt);
-      simulTuple->SetBranchAddress("mc_Pt2",&Pt2Evnt);
-      simulTuple->SetBranchAddress("mc_PhiPQ",&PhiEvnt);
-      simulTuple->SetBranchAddress("evnt",&evnt);
+      simulTuple->SetBranchAddress("mc_pid",   &mcPid);
+      simulTuple->SetBranchAddress("pid",      &pid);
+      simulTuple->SetBranchAddress("mc_Q2",    &Q2Evnt);
+      simulTuple->SetBranchAddress("mc_Nu",    &NuEvnt);
+      simulTuple->SetBranchAddress("mc_Zh",    &ZhEvnt);
+      simulTuple->SetBranchAddress("mc_Pt2",   &Pt2Evnt);
+      simulTuple->SetBranchAddress("mc_PhiPQ", &PhiEvnt);
+      simulTuple->SetBranchAddress("evnt",     &evnt);
 
       gROOT->cd();
 
@@ -103,7 +103,7 @@ int main(int argc, char* argv[]) {
         if(mcPid == 211 ) {
           // Save the angle PhiPQ, Zh and Pt if it's a pion
           tmpZh[0]  = ZhEvnt;
-          tmpPt2[0]  = Pt2Evnt;
+          tmpPt2[0] = Pt2Evnt;
           tmpPhi[0] = PhiEvnt;
           vars[0]++;
         }
